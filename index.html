@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Theme Creator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="controller">
+            <button type="submit" form="form1" value="Submit">New</button>
+            <button type="submit" form="form1" value="Submit">Save</button>
+        </div>
+        <div class="panel">
+            <div class="demo">deneme</div>
+            <div class="rightside">
+                <form>
+                    <select size="3" class="layers">
+                        <option>Layer 1</option>
+                        <option>Layer 2</option>
+                        <option>Layer 3</option>
+                    </select>
+                    <ul class="layers-control">
+                        <li id="add-layer" onclick="">➕</li>
+                        <li id="delete-layer" onclick="">➖</li>
+                        <li id="up-layer" onclick="">🔺</li>
+                        <li id="down-layer" onclick="">🔻</li>
+                        
+                    </ul>
+                </form>
+                <div class="line"></div>
+                <form class="properties">
+                    <input placeholder="Section ID (ex: main)" type="text" name="idName">
+                    <input placeholder="Section Class (ex: main)" type="text" name="idName">
+                    <input placeholder="Maximum Widget Number (ex: 3)" type="text" name="idName">
+                    <select id="select_box">
+                            <option value="0">Show Add Element:</option>
+                            <option value="1">Yes</option>
+                            <option value="2">No</option>
+                    </select>
+                    <input class="button" type="submit" value="Add">
+                    <br><br>
+                </form> 
+                <div class="line"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+<script type="text/javascript" src="script/themeCreator.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

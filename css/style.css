@@ -1,0 +1,81 @@
+body{
+    background: #cbddca
+}
+.container{
+    width: 800px;
+    margin: auto;
+}
+.controller{
+    background: #000000;
+    padding: 10px;
+}
+.controller button{
+    padding:5px 10px;
+    margin-left:10px;
+}
+.panel{}
+.demo{
+    width:470px;
+    float:left;
+    background:#fff;
+    padding: 10px;
+}
+.rightside{
+    text-align: center;
+    width:290px;
+    float:right;
+    padding:10px;
+    background:#f1f1f1;
+}
+.clear{
+    width: 100%;
+    clear: both;
+}
+.properties input{
+    width: 270px;
+    padding:5px;
+    margin-top:10px;
+}
+select{
+    width:284px;
+    padding:5px;
+    margin-top:10px;
+}
+.button{
+    width:284px!important;
+    padding:5px;
+    margin-top:10px;
+}
+.layers{
+    height:100px;
+}
+ul.layers-control{
+    margin: 0;
+    padding: 0;
+    height:40px;
+}
+ul.layers-control li{
+    padding:5px;
+    line-height: 30px;
+    display: inline;
+    list-style-type: none;
+    cursor: pointer;
+}
+li#add-layer, li#delete-layer{
+    float:left;
+    margin-right: 5px;
+}
+
+li#up-layer, li#down-layer{
+    float:right;
+    margin-left: 5px;
+}
+li.clear{
+    clear:both;
+}
+.line{
+    width:100%;
+    height:5px;
+    line-height: 5px;
+    border-top:1px solid rgb(168, 168, 168);
+}
