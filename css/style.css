@@ -13,7 +13,7 @@ body{
     padding:5px 10px;
     margin-left:10px;
 }
-.panel{}
+.panel{background:#fff;}
 .demo{
     width:470px;
     float:left;
