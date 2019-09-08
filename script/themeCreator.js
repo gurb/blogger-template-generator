@@ -19,13 +19,14 @@ class UI{
         const classValue = this.sectionClass.value;
         const maxWidgetNumberValue = this.maxWidgetNumber.value;
         const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
-
+        
         if(idValue==='' || idValue < 0){
-            this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "Actually, section id is necessary."
+            const self = this;
+            const message = "<p>Actually, section id is necessary.</p>";
+            this.addNotification(self, message);
         }else if(classValue==='' || classValue < 0){
             this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "Actually, section class is necessary."
+            this.propertiesNotification.innerHTML = "Actually, section class is necessary.";
         }else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
             this.propertiesNotification.classList.add("showNotification");
             this.propertiesNotification.innerHTML = "Don't Necessary";
@@ -36,6 +37,17 @@ class UI{
             this.propertiesNotification.classList.add("showNotification");
             this.propertiesNotification.innerHTML = "all accepted.";
         }
+
+    }
+
+    addNotification(self, message){
+        var notification = document.createElement('div');
+        notification.className = "showNotification";
+        self.propertiesNotification.appendChild(notification);
+        notification.innerHTML = message;
+        setTimeout(function(){
+            notification.remove("showNotification");
+        },5000);
     }
 }
 
