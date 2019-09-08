@@ -4,15 +4,42 @@ class UI{
         this.panel = document.querySelector(".panel");
         this.demo = document.querySelector(".demo");
         this.rightside = document.querySelector(".rightside");
-        this.layer = document.querySelector(".layers");
+        this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
         this.properties = document.querySelector(".properties");
         this.sectionId = document.getElementById("sectionId");
         this.sectionClass = document.getElementById("sectionClass");
-        this.maxWidgetClass = document.getElementById("maxWidgetClass");
+        this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
     }
+
+    submit_layers(){
+        console.log("is workin?");
+    }
 }
+
+function eventListener(){
+    const layers = document.querySelector(".layers");
+    const properties = document.querySelector(".properties"); 
+
+    const ui = new UI();
+
+    layers.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.submit_layers();
+    });
+
+    properties.addEventListener("submit", function(event) {
+        event.preventDefault();
+        ui.submit_layers();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    eventListener();
+});
+
+
 
 var sections = [];
 
@@ -24,7 +51,8 @@ function Section(idName, className, max_widgets, show_add_element){
 }
 
 function get_section(){
-    var idName = document.querySelector("");
+    var sectionObj = new Section(ui.sectionId, ui.sectionClass, ui.maxWidgetNumber, ui.selectBox); 
+    sections.push(sectionObj);
 }
 
 function create_section_on_demo(){
