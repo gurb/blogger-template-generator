@@ -7,14 +7,35 @@ class UI{
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
         this.properties = document.querySelector(".properties");
+        this.propertiesNotification = document.querySelector(".properties-notification");
         this.sectionId = document.getElementById("sectionId");
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
     }
 
-    submit_layers(){
-        console.log("is workin?");
+    submitProperties(){
+        const idValue = this.sectionId.value;
+        const classValue = this.sectionClass.value;
+        const maxWidgetNumberValue = this.maxWidgetNumber.value;
+        const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
+
+        if(idValue==='' || idValue < 0){
+            this.propertiesNotification.classList.add("showNotification");
+            this.propertiesNotification.innerHTML = "Actually, section id is necessary."
+        }else if(classValue==='' || classValue < 0){
+            this.propertiesNotification.classList.add("showNotification");
+            this.propertiesNotification.innerHTML = "Actually, section class is necessary."
+        }else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
+            this.propertiesNotification.classList.add("showNotification");
+            this.propertiesNotification.innerHTML = "Don't Necessary";
+        }else if(selectBoxValue==="0"){
+            this.propertiesNotification.classList.add("showNotification");
+            this.propertiesNotification.innerHTML = "Yes or No, choose one.";
+        }else{
+            this.propertiesNotification.classList.add("showNotification");
+            this.propertiesNotification.innerHTML = "all accepted.";
+        }
     }
 }
 
@@ -31,7 +52,7 @@ function eventListener(){
 
     properties.addEventListener("submit", function(event) {
         event.preventDefault();
-        ui.submit_layers();
+        ui.submitProperties();
     });
 }
 
