@@ -19,24 +19,20 @@ class UI{
         const classValue = this.sectionClass.value;
         const maxWidgetNumberValue = this.maxWidgetNumber.value;
         const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
-        
+        const self = this;
+        var message;
         if(idValue==='' || idValue < 0){
-            const self = this;
-            const message = "<p>Actually, section id is necessary.</p>";
-            this.addNotification(self, message);
+            message = "Actually, section id is necessary.";
         }else if(classValue==='' || classValue < 0){
-            this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "Actually, section class is necessary.";
+            message = "Actually, section class is necessary.";
         }else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
-            this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "Don't Necessary";
+            message = "Don't Necessary";
         }else if(selectBoxValue==="0"){
-            this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "Yes or No, choose one.";
+            message = "Yes or No, choose one.";
         }else{
-            this.propertiesNotification.classList.add("showNotification");
-            this.propertiesNotification.innerHTML = "all accepted.";
+            message = "all accepted.";
         }
+        this.addNotification(self, message);
 
     }
 
