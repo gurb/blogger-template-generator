@@ -12,6 +12,7 @@ class UI{
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
+        this.runLen = 1;
     }
 
     submitProperties(){
@@ -21,6 +22,7 @@ class UI{
         const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
         const self = this;
         var message;
+        
         if(idValue==='' || idValue < 0){
             message = "Actually, section id is necessary.";
         }else if(classValue==='' || classValue < 0){
@@ -33,7 +35,6 @@ class UI{
             message = "all accepted.";
         }
         this.addNotification(self, message);
-
     }
 
     addNotification(self, message){
@@ -45,6 +46,10 @@ class UI{
             notification.remove("showNotification");
         },5000);
     }
+}
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function eventListener(){
