@@ -82,5 +82,11 @@ li.clear{
 }
 
 .showNotification{
+    color:#fff;
+    font-size: 13px;
+    background: #a88a28;
+    padding:4px;
+    border:1px solid #7c661e;
+    border-radius: 3px;
     display: block;
 }
