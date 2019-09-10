@@ -12,7 +12,7 @@ class UI{
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
-        this.runLen = 1;
+        this.runLen = 0;
     }
 
     submitProperties(){
@@ -25,6 +25,7 @@ class UI{
         
         if(idValue==='' || idValue < 0){
             message = "Actually, section id is necessary.";
+            this.runLen++;
         }else if(classValue==='' || classValue < 0){
             message = "Actually, section class is necessary.";
         }else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
@@ -40,11 +41,12 @@ class UI{
     addNotification(self, message){
         var notification = document.createElement('div');
         notification.className = "showNotification";
-        self.propertiesNotification.appendChild(notification);
+        if(self.propertiesNotification.children.length === 0)
+            self.propertiesNotification.appendChild(notification);
         notification.innerHTML = message;
         setTimeout(function(){
             notification.remove("showNotification");
-        },5000);
+        },2000);
     }
 }
 
