@@ -32,7 +32,10 @@ class UI{
         }else if(selectBoxValue==="0"){
             message = "Yes or No, choose one.";
         }else{
-            message = "all accepted.";
+            message = "All added."
+            var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue);
+            sections.push(obj);
+            console.log(sections[0]);
         }
         this.addNotification(self, message);
     }
@@ -47,7 +50,7 @@ class UI{
         this.temp_msg = message;
         setTimeout(function(){
             notification.remove("showNotification");
-        },5000);
+        },10000);
     }
 }
 
@@ -75,8 +78,6 @@ function eventListener(){
 document.addEventListener('DOMContentLoaded', function(){
     eventListener();
 });
-
-
 
 var sections = [];
 
