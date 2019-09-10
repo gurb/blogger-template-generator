@@ -82,6 +82,7 @@ li.clear{
 }
 
 .showNotification{
+    margin:10px 0;
     color:#fff;
     font-size: 13px;
     background: #a88a28;
