@@ -12,6 +12,7 @@ class UI{
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
+        this.temp_msg;
     }
 
     submitProperties(){
@@ -39,12 +40,14 @@ class UI{
     addNotification(self, message){
         var notification = document.createElement('div');
         notification.className = "showNotification";
-        if(self.propertiesNotification.children.length === 0)
+        console.log(this.temp_msg);
+        if(self.propertiesNotification.children.length === 0 || this.temp_msg !== message)
             self.propertiesNotification.appendChild(notification);
         notification.innerHTML = message;
+        this.temp_msg = message;
         setTimeout(function(){
             notification.remove("showNotification");
-        },3000);
+        },5000);
     }
 }
 
