@@ -13,7 +13,7 @@ class UI{
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
         this.temp_msg;
-        this.securityCode = "fadsf76f89adsji1";
+        this.securityCode = randomCharacter(10);
     }
 
     submitProperties(){
@@ -128,6 +128,25 @@ function uniqueIDcontrol(idValue){
             return false;
     }
     return true;
+}
+
+function randomCharacter(len){
+    var randomCharacter = "";
+    var characters = ['A','a','B','b','C','c',
+                      'D','d','E','e','F','f',
+                      'G','g','H','h','I','i',
+                      'J','j','K','k','L','l',
+                      'M','m','N','n','O','o',
+                      'P','p','Q','q','R','r',
+                      'S','s','T','t','U','u',
+                      'V','v','W','w','X','x',
+                      'Y','y','Z','z'];
+
+    for(var i=0;i<len;i++){
+        var r = Math.floor(Math.random() * characters.length);
+        randomCharacter += characters[r];
+    }
+    return randomCharacter;
 }
 
 function get_section(){
