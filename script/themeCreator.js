@@ -69,8 +69,8 @@ class UI{
         optionArea.innerHTML = sections[sections.length - 1].idName;
     }
 
-    deleteSection(self, sections){
-        
+    deleteSection(){
+        //
     }
 }
 
@@ -80,7 +80,8 @@ function sleep(ms){
 
 function eventListener(){
     const layers = document.querySelector(".layers");
-    const properties = document.querySelector(".properties"); 
+    const properties = document.querySelector(".properties");
+    const deleteLayer = document.getElementById("delete-layer");  
 
     const ui = new UI();
 
@@ -92,6 +93,12 @@ function eventListener(){
     properties.addEventListener("submit", function(event) {
         event.preventDefault();
         ui.submitProperties();
+    });
+
+    deleteLayer.addEventListener("click", function(event){
+        event.preventDefault();
+        console.log("calisti");
+        ui.deleteSection();
     });
 }
 
