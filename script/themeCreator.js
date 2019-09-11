@@ -54,9 +54,14 @@ class UI{
     }
 
     addSection(self, sections){
-        var sectionArea = document.createElement('div');
+        var sectionArea = document.createElement('div');        
         sectionArea.className = "sectionArea";
         self.demo.appendChild(sectionArea);
+        sectionArea.innerHTML = sections[sections.length - 1].idName;
+
+        var optionArea = document.createElement('option');
+        self.layersList.appendChild(optionArea);
+        optionArea.innerHTML = sections[sections.length - 1].idName;
     }
 }
 
