@@ -68,6 +68,10 @@ class UI{
         self.layersList.appendChild(optionArea);
         optionArea.innerHTML = sections[sections.length - 1].idName;
     }
+
+    deleteSection(self, sections){
+        
+    }
 }
 
 function sleep(ms){

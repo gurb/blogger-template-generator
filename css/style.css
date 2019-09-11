@@ -48,7 +48,10 @@ select{
     margin-top:10px;
 }
 .layers{
-    height:100px;
+    height:auto;
+}
+.layers-list{
+    height: 120px;
 }
 ul.layers-control{
     margin: 0;
