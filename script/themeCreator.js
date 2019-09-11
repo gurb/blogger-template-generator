@@ -13,6 +13,7 @@ class UI{
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
         this.temp_msg;
+        this.securityCode = "fadsf76f89adsji1";
     }
 
     submitProperties(){
@@ -59,6 +60,7 @@ class UI{
     addSection(self, sections){
         var sectionArea = document.createElement('div');        
         sectionArea.className = "sectionArea";
+        sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
         self.demo.appendChild(sectionArea);
         sectionArea.innerHTML = sections[sections.length - 1].idName;
     }
@@ -70,7 +72,11 @@ class UI{
     }
 
     deleteSection(){
-        //
+        sections.splice(this.layersList.selectedIndex, 1);
+        var selectedDivName = this.layersList.options[this.layersList.selectedIndex].text + this.securityCode;
+        var sectionIDdiv = document.getElementById(selectedDivName);
+        this.demo.removeChild(sectionIDdiv);
+        this.layersList.remove(this.layersList.selectedIndex);
     }
 }
 
@@ -97,7 +103,6 @@ function eventListener(){
 
     deleteLayer.addEventListener("click", function(event){
         event.preventDefault();
-        console.log("calisti");
         ui.deleteSection();
     });
 }
