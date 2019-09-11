@@ -35,7 +35,7 @@ class UI{
             message = "All added."
             var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue);
             sections.push(obj);
-            console.log(sections[0]);
+            this.addSection(self, sections);
         }
         this.addNotification(self, message);
     }
@@ -51,6 +51,12 @@ class UI{
         setTimeout(function(){
             notification.remove("showNotification");
         },10000);
+    }
+
+    addSection(self, sections){
+        var sectionArea = document.createElement('div');
+        sectionArea.className = "sectionArea";
+        self.demo.appendChild(sectionArea);
     }
 }
 

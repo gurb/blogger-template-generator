@@ -91,3 +91,10 @@ li.clear{
     border-radius: 3px;
     display: block;
 }
+
+.sectionArea{
+    border:1px solid #ccc;
+    background: #eee;
+    padding: 10px;
+    margin-bottom:10px;
+}
