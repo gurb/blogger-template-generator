@@ -36,6 +36,7 @@ class UI{
             var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue);
             sections.push(obj);
             this.addSection(self, sections);
+            this.addOption(self, sections);
         }
         this.addNotification(self, message);
     }
@@ -58,7 +59,9 @@ class UI{
         sectionArea.className = "sectionArea";
         self.demo.appendChild(sectionArea);
         sectionArea.innerHTML = sections[sections.length - 1].idName;
+    }
 
+    addOption(self, sections){
         var optionArea = document.createElement('option');
         self.layersList.appendChild(optionArea);
         optionArea.innerHTML = sections[sections.length - 1].idName;
@@ -77,7 +80,7 @@ function eventListener(){
 
     layers.addEventListener("click", function(event){
         event.preventDefault();
-        ui.submit_layers();
+        //ui.submit_layers();
     });
 
     properties.addEventListener("submit", function(event) {
