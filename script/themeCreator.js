@@ -22,7 +22,7 @@ class UI{
         const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
         const self = this;
         var message;
-        
+
         if(idValue==='' || idValue < 0){
             message = "Actually, section id is necessary.";
         }else if(classValue==='' || classValue < 0){
@@ -31,8 +31,10 @@ class UI{
             message = "Don't Necessary";
         }else if(selectBoxValue==="0"){
             message = "Yes or No, choose one.";
+        }else if(!uniqueIDcontrol(idValue)){
+            message = "ID must be unique";
         }else{
-            message = "All added."
+            message = "All added.";
             var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue);
             sections.push(obj);
             this.addSection(self, sections);
@@ -100,6 +102,16 @@ function Section(idName, className, max_widgets, show_add_element){
     this.className = className;
     this.max_widgets = max_widgets;
     this.show_add_element = show_add_element; 
+}
+
+function uniqueIDcontrol(idValue){
+    if(sections.length === 0)
+        return true;
+    for(var i=0;i<sections.length;i++){
+        if(sections[i].idName === idValue)
+            return false;
+    }
+    return true;
 }
 
 function get_section(){
