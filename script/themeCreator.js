@@ -97,6 +97,25 @@ class UI{
 
         this.layersList.options[this.layersList.selectedIndex-1].selected = 'selected';        
     }
+
+    downSection(){
+        var tempOption = this.layersList.options[this.layersList.selectedIndex].text;
+        this.layersList.options[this.layersList.selectedIndex].text = this.layersList.options[this.layersList.selectedIndex+1].text;
+        this.layersList.options[this.layersList.selectedIndex+1].text = tempOption;
+
+        var tempElement = sections[this.layersList.selectedIndex];
+        sections[this.layersList.selectedIndex] = sections[this.layersList.selectedIndex+1];
+        sections[this.layersList.selectedIndex+1] = tempElement;
+
+        var afterSelectedDivName = this.layersList.options[this.layersList.selectedIndex+1].text + this.securityCode;
+        var selectedDivName = this.layersList.options[this.layersList.selectedIndex].text + this.securityCode;
+        var afterSectionIDdiv = document.getElementById(afterSelectedDivName);
+        var sectionIDdiv = document.getElementById(selectedDivName);
+        var parentSectionDiv = sectionIDdiv.parentNode;
+        parentSectionDiv.insertBefore(sectionIDdiv, afterSectionIDdiv);
+
+        this.layersList.options[this.layersList.selectedIndex+1].selected = 'selected'; 
+    }
 }
 
 function sleep(ms){
@@ -107,7 +126,8 @@ function eventListener(){
     const layers = document.querySelector(".layers");
     const properties = document.querySelector(".properties");
     const deleteLayer = document.getElementById("delete-layer");
-    const upLayer = document.getElementById("up-layer");  
+    const upLayer = document.getElementById("up-layer");
+    const downLayer = document.getElementById("down-layer");  
 
     const ui = new UI();
 
@@ -129,6 +149,11 @@ function eventListener(){
     upLayer.addEventListener("click", function(event){
         event.preventDefault();
         ui.upSection();
+    });
+
+    downLayer.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.downSection();
     });
 }
 
