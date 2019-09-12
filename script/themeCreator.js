@@ -88,6 +88,13 @@ class UI{
         sections[this.layersList.selectedIndex] = sections[this.layersList.selectedIndex-1];
         sections[this.layersList.selectedIndex-1] = tempElement;
 
+        var beforeSelectedDivName = this.layersList.options[this.layersList.selectedIndex-1].text + this.securityCode;
+        var selectedDivName = this.layersList.options[this.layersList.selectedIndex].text + this.securityCode;
+        var beforeSectionIDdiv = document.getElementById(beforeSelectedDivName);
+        var sectionIDdiv = document.getElementById(selectedDivName);
+        var parentSectionDiv = sectionIDdiv.parentNode;
+        parentSectionDiv.insertBefore(beforeSectionIDdiv, sectionIDdiv);
+
         this.layersList.options[this.layersList.selectedIndex-1].selected = 'selected';        
     }
 }
