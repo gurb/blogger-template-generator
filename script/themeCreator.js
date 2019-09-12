@@ -78,6 +78,18 @@ class UI{
         this.demo.removeChild(sectionIDdiv);
         this.layersList.remove(this.layersList.selectedIndex);
     }
+
+    upSection(){
+        var tempOption = this.layersList.options[this.layersList.selectedIndex].text;
+        this.layersList.options[this.layersList.selectedIndex].text = this.layersList.options[this.layersList.selectedIndex-1].text;
+        this.layersList.options[this.layersList.selectedIndex-1].text = tempOption;
+
+        var tempElement = sections[this.layersList.selectedIndex];
+        sections[this.layersList.selectedIndex] = sections[this.layersList.selectedIndex-1];
+        sections[this.layersList.selectedIndex-1] = tempElement;
+
+        this.layersList.options[this.layersList.selectedIndex-1].selected = 'selected';        
+    }
 }
 
 function sleep(ms){
@@ -87,7 +99,8 @@ function sleep(ms){
 function eventListener(){
     const layers = document.querySelector(".layers");
     const properties = document.querySelector(".properties");
-    const deleteLayer = document.getElementById("delete-layer");  
+    const deleteLayer = document.getElementById("delete-layer");
+    const upLayer = document.getElementById("up-layer");  
 
     const ui = new UI();
 
@@ -104,6 +117,11 @@ function eventListener(){
     deleteLayer.addEventListener("click", function(event){
         event.preventDefault();
         ui.deleteSection();
+    });
+
+    upLayer.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.upSection();
     });
 }
 
