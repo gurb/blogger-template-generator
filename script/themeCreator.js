@@ -7,6 +7,7 @@ class UI{
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
         this.properties = document.querySelector(".properties");
+        this.properties.style.display = 'none';
         this.propertiesNotification = document.querySelector(".properties-notification");
         this.sectionId = document.getElementById("sectionId");
         this.sectionClass = document.getElementById("sectionClass");
@@ -42,6 +43,10 @@ class UI{
             this.addOption(self, sections);
         }
         this.addNotification(self, message);
+    }
+
+    showAddProperties(){
+        this.properties.style.display = 'block';
     }
 
     addNotification(self, message){
@@ -125,6 +130,7 @@ function sleep(ms){
 function eventListener(){
     const layers = document.querySelector(".layers");
     const properties = document.querySelector(".properties");
+    const showAddLayer = document.getElementById("add-layer");
     const deleteLayer = document.getElementById("delete-layer");
     const upLayer = document.getElementById("up-layer");
     const downLayer = document.getElementById("down-layer");  
@@ -139,6 +145,11 @@ function eventListener(){
     properties.addEventListener("submit", function(event) {
         event.preventDefault();
         ui.submitProperties();
+    });
+
+    showAddLayer.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.showAddProperties();
     });
 
     deleteLayer.addEventListener("click", function(event){
@@ -198,19 +209,3 @@ function randomCharacter(len){
     }
     return randomCharacter;
 }
-
-function get_section(){
-    var sectionObj = new Section(ui.sectionId, ui.sectionClass, ui.maxWidgetNumber, ui.selectBox); 
-    sections.push(sectionObj);
-}
-
-function create_section_on_demo(){
-
-}
-
-function add_list_section(){
-
-}
-
-
-
