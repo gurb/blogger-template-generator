@@ -121,6 +121,10 @@ class UI{
 
         this.layersList.options[this.layersList.selectedIndex+1].selected = 'selected'; 
     }
+
+    closeProperties(){
+        this.properties.style.display = 'none';
+    }
 }
 
 function sleep(ms){
@@ -133,7 +137,8 @@ function eventListener(){
     const showAddLayer = document.getElementById("add-layer");
     const deleteLayer = document.getElementById("delete-layer");
     const upLayer = document.getElementById("up-layer");
-    const downLayer = document.getElementById("down-layer");  
+    const downLayer = document.getElementById("down-layer");
+    const closeProperties = document.querySelector(".exitButton");  
 
     const ui = new UI();
 
@@ -165,6 +170,11 @@ function eventListener(){
     downLayer.addEventListener("click", function(event){
         event.preventDefault();
         ui.downSection();
+    });
+
+    closeProperties.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.closeProperties();
     });
 }
 

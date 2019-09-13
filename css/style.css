@@ -43,9 +43,16 @@ select{
     margin-top:10px;
 }
 .button{
-    width:284px!important;
-    padding:5px;
+    width:254px!important;
+    padding:4px;
+    float:left;
+    margin-left:3px;
     margin-top:10px;
+}
+.exitButton{
+    width:24px!important;
+    padding:5px;
+    float:rigth;
 }
 .layers{
     height:auto;
