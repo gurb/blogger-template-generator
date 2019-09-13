@@ -63,10 +63,10 @@ class UI{
         },10000);
     }
 
-    showSectionProperties(self){
-        var sectionOption = document.getElementById(sections[sections.length - 1].idName + this.securityCode + "-option");
-        sectionOption.style.display = 'block';
-        console.log(sections[sections.length - 1].idName + self.securityCode + "-option");
+    showSectionProperties(self, id){
+        var sectionOptionID = id;
+        document.getElementById(sectionOptionID).style.display = 'block';
+        console.log(sectionOptionID);
     }
     
     addSection(self, sections){
@@ -76,9 +76,10 @@ class UI{
         sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
         sectionOption.id = sections[sections.length - 1].idName + this.securityCode + "-option";
+        var id = sections[sections.length - 1].idName + this.securityCode + "-option";
         sectionOption.style.display = 'none';
         sectionArea.addEventListener("click", function(){
-            self.showSectionProperties(self);
+            self.showSectionProperties(self, id);
         });
         self.demo.appendChild(sectionArea);
         self.demo.appendChild(sectionOption);
