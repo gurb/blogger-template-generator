@@ -66,10 +66,11 @@ class UI{
     showSectionProperties(self, id){
         var sectionOptionID = id;
         var sectionOption = document.getElementById(sectionOptionID);
-        if(sectionOption.style.display === 'none'){        
+        for(var i=0;i<sections.length;i++){
+            var tempId = sections[i].idName + this.securityCode + "-option";
+            if(id != tempId)
+                document.getElementById(tempId).style.display = 'none';
             sectionOption.style.display = 'block';
-        }else{
-            sectionOption.style.display = 'none';
         }
     }
     
@@ -144,7 +145,7 @@ class UI{
 
         this.layersList.options[this.layersList.selectedIndex+1].selected = 'selected'; 
     }
-
+    
     closeProperties(){
         this.properties.style.display = 'none';
     }
