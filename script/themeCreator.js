@@ -76,17 +76,19 @@ class UI{
     addSection(self, sections){
         var sectionArea = document.createElement('div');
         var sectionOption = document.createElement('div');
+        var sectionHeader = document.createElement('div');
         sectionArea.className = "sectionArea";
         sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
         sectionOption.id = sections[sections.length - 1].idName + this.securityCode + "-option";
         var id = sections[sections.length - 1].idName + this.securityCode + "-option";
         sectionOption.style.display = 'none';
-        sectionArea.addEventListener("click", function(){
+        sectionHeader.addEventListener("click", function(){
             self.showSectionProperties(self, id);
         });
         self.demo.appendChild(sectionArea);
-        sectionArea.innerHTML += sections[sections.length - 1].idName;
+        sectionArea.appendChild(sectionHeader);
+        sectionHeader.innerHTML += sections[sections.length - 1].idName;
         sectionArea.appendChild(sectionOption);
         
     }
