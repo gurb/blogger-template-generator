@@ -13,6 +13,7 @@ class UI{
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
+        this.sectionOption = document.querySelector(".sectionOption");
         this.temp_msg;
         this.securityCode = randomCharacter(10);
     }
@@ -62,16 +63,25 @@ class UI{
         },10000);
     }
 
-    showSectionProperties(){
-        console.log("first");
+    showSectionProperties(self){
+        var sectionOption = document.getElementById(sections[sections.length - 1].idName + this.securityCode + "-option");
+        sectionOption.style.display = 'block';
+        console.log(sections[sections.length - 1].idName + self.securityCode + "-option");
     }
     
     addSection(self, sections){
-        var sectionArea = document.createElement('div');        
+        var sectionArea = document.createElement('div');
+        var sectionOption = document.createElement('div');        
         sectionArea.className = "sectionArea";
+        sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
-        sectionArea.onclick = this.showSectionProperties;
+        sectionOption.id = sections[sections.length - 1].idName + this.securityCode + "-option";
+        sectionOption.style.display = 'none';
+        sectionArea.addEventListener("click", function(){
+            self.showSectionProperties(self);
+        });
         self.demo.appendChild(sectionArea);
+        self.demo.appendChild(sectionOption);
         sectionArea.innerHTML = sections[sections.length - 1].idName;
     }
 
@@ -144,7 +154,6 @@ function eventListener(){
     const upLayer = document.getElementById("up-layer");
     const downLayer = document.getElementById("down-layer");
     const closeProperties = document.querySelector(".exitButton");
-
 
     const ui = new UI();
 
