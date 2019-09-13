@@ -62,10 +62,15 @@ class UI{
         },10000);
     }
 
+    showSectionProperties(){
+        console.log("first");
+    }
+    
     addSection(self, sections){
         var sectionArea = document.createElement('div');        
         sectionArea.className = "sectionArea";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
+        sectionArea.onclick = this.showSectionProperties;
         self.demo.appendChild(sectionArea);
         sectionArea.innerHTML = sections[sections.length - 1].idName;
     }
@@ -138,7 +143,8 @@ function eventListener(){
     const deleteLayer = document.getElementById("delete-layer");
     const upLayer = document.getElementById("up-layer");
     const downLayer = document.getElementById("down-layer");
-    const closeProperties = document.querySelector(".exitButton");  
+    const closeProperties = document.querySelector(".exitButton");
+
 
     const ui = new UI();
 
