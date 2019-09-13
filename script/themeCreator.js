@@ -65,13 +65,17 @@ class UI{
 
     showSectionProperties(self, id){
         var sectionOptionID = id;
-        document.getElementById(sectionOptionID).style.display = 'block';
-        console.log(sectionOptionID);
+        var sectionOption = document.getElementById(sectionOptionID);
+        if(sectionOption.style.display === 'none'){        
+            sectionOption.style.display = 'block';
+        }else{
+            sectionOption.style.display = 'none';
+        }
     }
     
     addSection(self, sections){
         var sectionArea = document.createElement('div');
-        var sectionOption = document.createElement('div');        
+        var sectionOption = document.createElement('div');
         sectionArea.className = "sectionArea";
         sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
@@ -82,8 +86,9 @@ class UI{
             self.showSectionProperties(self, id);
         });
         self.demo.appendChild(sectionArea);
-        self.demo.appendChild(sectionOption);
-        sectionArea.innerHTML = sections[sections.length - 1].idName;
+        sectionArea.innerHTML += sections[sections.length - 1].idName;
+        sectionArea.appendChild(sectionOption);
+        
     }
 
     addOption(self, sections){
