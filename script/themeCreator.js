@@ -64,14 +64,23 @@ class UI{
     }
 
     showSectionProperties(self, id){
+        var index;
         var sectionOptionID = id;
         var sectionOption = document.getElementById(sectionOptionID);
-        for(var i=0;i<sections.length;i++){
-            var tempId = sections[i].idName + this.securityCode + "-option";
-            if(id != tempId)
-                document.getElementById(tempId).style.display = 'none';
-            sectionOption.style.display = 'block';
+        if(sectionOption.style.display === 'block'){
+            sectionOption.style.display = 'none';
+        }else{
+            for(var i=0;i<sections.length;i++){
+                var tempId = sections[i].idName + this.securityCode + "-option";
+                if(id != tempId){
+                    document.getElementById(tempId).style.display = 'none';
+                    continue;
+                }
+                sectionOption.style.display = 'block';
+                index = i;
+            }
         }
+        this.layersList.options[index].selected = 'selected';
     }
     
     addSection(self, sections){
@@ -79,6 +88,7 @@ class UI{
         var sectionOption = document.createElement('div');
         var sectionHeader = document.createElement('div');
         sectionArea.className = "sectionArea";
+        sectionHeader.className = "sectionHeader";
         sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
         sectionOption.id = sections[sections.length - 1].idName + this.securityCode + "-option";
@@ -90,8 +100,7 @@ class UI{
         self.demo.appendChild(sectionArea);
         sectionArea.appendChild(sectionHeader);
         sectionHeader.innerHTML += sections[sections.length - 1].idName;
-        sectionArea.appendChild(sectionOption);
-        
+        sectionArea.appendChild(sectionOption); 
     }
 
     addOption(self, sections){
