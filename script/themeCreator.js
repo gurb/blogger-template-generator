@@ -63,19 +63,24 @@ class UI{
         },10000);
     }
 
-    showSectionProperties(self, id){
+    showSectionProperties(self, id, iconId){
         var index;
         var sectionOptionID = id;
         var sectionOption = document.getElementById(sectionOptionID);
+        var iconState = document.getElementById(iconId);
         if(sectionOption.style.display === 'block'){
             sectionOption.style.display = 'none';
+            iconState.style.backgroundImage = 'url(images/open-arrow.png)';
         }else{
             for(var i=0;i<sections.length;i++){
                 var tempId = sections[i].idName + this.securityCode + "-option";
+                var tempIconId = sections[i].idName + this.securityCode + "-icon"; 
                 if(id != tempId){
                     document.getElementById(tempId).style.display = 'none';
+                    document.getElementById(tempIconId).style.backgroundImage = 'url(images/open-arrow.png)';
                     continue;
                 }
+                iconState.style.backgroundImage = 'url(images/close-arrow.png)';
                 sectionOption.style.display = 'block';
                 index = i;
             }
@@ -87,19 +92,24 @@ class UI{
         var sectionArea = document.createElement('div');
         var sectionOption = document.createElement('div');
         var sectionHeader = document.createElement('div');
+        var iconImage = document.createElement('span');
         sectionArea.className = "sectionArea";
         sectionHeader.className = "sectionHeader";
+        iconImage.className = "iconImage";
         sectionOption.className = "sectionOption";
         sectionArea.id = sections[sections.length - 1].idName + this.securityCode;
         sectionOption.id = sections[sections.length - 1].idName + this.securityCode + "-option";
+        iconImage.id = sections[sections.length - 1].idName + this.securityCode + "-icon";
         var id = sections[sections.length - 1].idName + this.securityCode + "-option";
+        var iconId = iconImage.id;
         sectionOption.style.display = 'none';
         sectionHeader.addEventListener("click", function(){
-            self.showSectionProperties(self, id);
+            self.showSectionProperties(self, id, iconId);
         });
         self.demo.appendChild(sectionArea);
         sectionArea.appendChild(sectionHeader);
-        sectionHeader.innerHTML += sections[sections.length - 1].idName;
+        sectionHeader.appendChild(iconImage);
+        iconImage.innerHTML += sections[sections.length - 1].idName;
         sectionArea.appendChild(sectionOption); 
     }
 

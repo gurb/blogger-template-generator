@@ -1,6 +1,7 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background: #cbddca
+    background: #cbddca;
+    overflow-y: scroll;
 }
 .container{
     width: 800px;
@@ -118,6 +119,14 @@ li.clear{
 }
 
 .sectionHeader{
-    padding:10px;
+    padding:15px;
     cursor: pointer;
+}
+
+.iconImage{
+    padding: 3px 0 0 40px;
+    height:32px;
+    display: inline-block;
+    background:url(../images/open-arrow.png) no-repeat;
+    text-align:center;
 }
