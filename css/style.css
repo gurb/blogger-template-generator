@@ -129,4 +129,5 @@ li.clear{
     display: inline-block;
     background:url(../images/open-arrow.png) no-repeat;
     text-align:center;
+    opacity: 0.5;
 }

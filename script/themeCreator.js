@@ -71,6 +71,7 @@ class UI{
         if(sectionOption.style.display === 'block'){
             sectionOption.style.display = 'none';
             iconState.style.backgroundImage = 'url(images/open-arrow.png)';
+            iconState.style.opacity = 0.5;
         }else{
             for(var i=0;i<sections.length;i++){
                 var tempId = sections[i].idName + this.securityCode + "-option";
@@ -78,9 +79,11 @@ class UI{
                 if(id != tempId){
                     document.getElementById(tempId).style.display = 'none';
                     document.getElementById(tempIconId).style.backgroundImage = 'url(images/open-arrow.png)';
+                    document.getElementById(tempIconId).style.opacity = 0.5;
                     continue;
                 }
                 iconState.style.backgroundImage = 'url(images/close-arrow.png)';
+                iconState.style.opacity = 1;
                 sectionOption.style.display = 'block';
                 index = i;
             }
