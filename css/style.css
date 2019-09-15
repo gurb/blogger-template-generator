@@ -119,7 +119,8 @@ li.clear{
 }
 
 .sectionOption{
-    height: 100px;
+    height: auto;
+    padding:10px;
     background:#fff;
     border:1px solid #ccc;
     margin:0px 0px 0px 0;
@@ -137,4 +138,9 @@ li.clear{
     background:url(../images/open-arrow.png) no-repeat;
     text-align:center;
     opacity: 0.5;
+}
+
+.formOptions input{
+    width: 40%;
+    margin:10px;
 }

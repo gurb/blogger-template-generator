@@ -14,6 +14,7 @@ class UI{
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
         this.sectionOption = document.querySelector(".sectionOption");
+        this.line = document.createElement("hr");
         this.temp_msg;
         this.securityCode = randomCharacter(10);
 
@@ -59,7 +60,6 @@ class UI{
     addNotification(self, message){
         var notification = document.createElement('div');
         notification.className = "showNotification";
-        console.log(this.temp_msg);
         if(self.propertiesNotification.children.length === 0 || this.temp_msg !== message)
             self.propertiesNotification.appendChild(notification);
         notification.innerHTML = message;
@@ -149,8 +149,6 @@ class UI{
         inputBGcolorText.setAttribute('type','text');
         inputBGcolorText.setAttribute('placeholder','Color code');
         inputBGcolorText.value = inputBGcolor.value;
-
-        inputBGcolor.onchange = colorPicker(inputBGcolor, inputBGcolorText);
 
         var submitButton = document.createElement('input');
         submitButton.setAttribute('type', 'submit');
@@ -343,8 +341,4 @@ function randomCharacter(len){
         randomCharacter += characters[r];
     }
     return randomCharacter;
-}
-
-function colorPicker(inputBGcolor, inputBGcolorText){
-    inputBGcolorText.value = inputBGcolor.value;
 }
