@@ -16,6 +16,9 @@ class UI{
         this.sectionOption = document.querySelector(".sectionOption");
         this.temp_msg;
         this.securityCode = randomCharacter(10);
+
+        this.canvas = document.getElementById("preview");
+        this.context = this.canvas.getContext("2d"); 
     }
 
     submitProperties(){
@@ -113,7 +116,30 @@ class UI{
         sectionArea.appendChild(sectionHeader);
         sectionHeader.appendChild(iconImage);
         iconImage.innerHTML += sections[sections.length - 1].idName;
-        sectionArea.appendChild(sectionOption); 
+        sectionArea.appendChild(sectionOption);
+        this.addOptionFormSection(sectionOption);
+    }
+
+    addOptionFormSection(sectionOption){
+        var formOptions = document.createElement('form');
+        formOptions.setAttribute('class','formOptions');
+        
+        var inputWidth = document.createElement('input');
+        inputWidth.setAttribute('type','text');
+        inputWidth.setAttribute('placeholder','Width');
+
+        var inputHeight = document.createElement('input');
+        inputHeight.setAttribute('type','text');
+        inputHeight.setAttribute('placeholder','Height');
+
+        var submitButton = document.createElement('input');
+        submitButton.setAttribute('type', 'submit');
+        submitButton.setAttribute('value', 'Add');
+        
+        sectionOption.appendChild(formOptions);
+        formOptions.appendChild(inputWidth);
+        formOptions.appendChild(inputHeight);
+        formOptions.appendChild(submitButton);
     }
 
     addOption(self, sections){
