@@ -165,6 +165,7 @@ class UI{
         formOptions.appendChild(submitButton);
 
         self.setOptionFormValues(self, formOptions, inputWidth, inputHeight);
+        self.changeColor(self, inputBGcolor, inputBGcolorText);
     }
 
     setOptionFormValues(self, formOptions, inputWidth, inputHeight){
@@ -176,6 +177,7 @@ class UI{
         });
     }
 
+    // draw section on preview panel
     drawOptionFormValues(self, w, h){
         var ctx = self.context;
         ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
@@ -183,12 +185,22 @@ class UI{
         ctx.fillRect(20, 10, 260, 20);
     }
 
+    // if inputBGcolor change then change inputBGcolorText value 
+    changeColor(self, inputBGcolor, inputBGcolorText){
+        inputBGcolor.addEventListener("change", function(event){
+            event.preventDefault();
+            inputBGcolorText.value = inputBGcolor.value;
+        });
+    }
+
+    // layer list element
     addOption(self, sections){
         var optionArea = document.createElement('option');
         self.layersList.appendChild(optionArea);
         optionArea.innerHTML = sections[sections.length - 1].idName;
     }
 
+    // delete selected section
     deleteSection(){
         sections.splice(this.layersList.selectedIndex, 1);
         var selectedDivName = this.layersList.options[this.layersList.selectedIndex].text + this.securityCode;
