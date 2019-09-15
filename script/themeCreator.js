@@ -136,6 +136,22 @@ class UI{
         inputHeight.setAttribute('type','text');
         inputHeight.setAttribute('placeholder','Height');
 
+        var inputFontSize = document.createElement('input');
+        inputFontSize.setAttribute('type','text');
+        inputFontSize.setAttribute('placeholder','Font Size');
+
+        var inputBGcolor = document.createElement('input');
+        inputBGcolor.setAttribute('type','color');
+        inputBGcolor.setAttribute('name','Color Picker');
+        inputBGcolor.setAttribute('placeholder','Background Color');
+
+        var inputBGcolorText = document.createElement('input');
+        inputBGcolorText.setAttribute('type','text');
+        inputBGcolorText.setAttribute('placeholder','Color code');
+        inputBGcolorText.value = inputBGcolor.value;
+
+        inputBGcolor.onchange = colorPicker(inputBGcolor, inputBGcolorText);
+
         var submitButton = document.createElement('input');
         submitButton.setAttribute('type', 'submit');
         submitButton.setAttribute('value', 'Add');
@@ -143,6 +159,9 @@ class UI{
         sectionOption.appendChild(formOptions);
         formOptions.appendChild(inputWidth);
         formOptions.appendChild(inputHeight);
+        formOptions.appendChild(inputFontSize);
+        formOptions.appendChild(inputBGcolor);
+        formOptions.appendChild(inputBGcolorText);
         formOptions.appendChild(submitButton);
 
         self.setOptionFormValues(self, formOptions, inputWidth, inputHeight);
@@ -159,8 +178,9 @@ class UI{
 
     drawOptionFormValues(self, w, h){
         var ctx = self.context;
+        ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
         ctx.fillStyle = "green";
-        ctx.fillRect(0,0,w,h);
+        ctx.fillRect(20, 10, 260, 20);
     }
 
     addOption(self, sections){
@@ -311,4 +331,8 @@ function randomCharacter(len){
         randomCharacter += characters[r];
     }
     return randomCharacter;
+}
+
+function colorPicker(inputBGcolor, inputBGcolorText){
+    inputBGcolorText.value = inputBGcolor.value;
 }
