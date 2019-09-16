@@ -360,3 +360,26 @@ function randomCharacter(len){
     }
     return randomCharacter;
 }
+
+
+// pieces of template code
+var XMLpattern = "";
+var firstPattern = "<!DOCTYPE html><html><head><meta charset='utf-8'/>"
+function titlePattern(titleN){
+    return "<title>" + titleN + "</title>";
+}
+var cssFirstTag = "<b:skin>";
+function cssPattern(){
+    var cssSelectorCode = "." + arguments[0] + "{";
+    for(var i=1; i<arguments.length; i++)
+        cssSelectorCode +=  arguments[i] + ";";
+    return cssSelectorCode + "}";
+}
+var cssEndTag = "</b:skin>";
+var headEndTag = "</head>";
+var bodyFirstTag = "<body>";
+function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
+    return "<div class='"+ classN +"'><b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/></div>";  
+}
+var bodyEndTag = "</body>";
+var htmlEndTag = "</html>";
