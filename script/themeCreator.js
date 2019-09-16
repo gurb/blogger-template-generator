@@ -142,45 +142,65 @@ class UI{
 
         var inputBGcolor = document.createElement('input');
         inputBGcolor.setAttribute('type','color');
+        inputBGcolor.setAttribute('class','bgColorPicker');
         inputBGcolor.setAttribute('name','Color Picker');
         inputBGcolor.setAttribute('placeholder','Background Color');
 
         var inputBGcolorText = document.createElement('input');
         inputBGcolorText.setAttribute('type','text');
+        inputBGcolorText.setAttribute('class','bgColorPickerText');
         inputBGcolorText.setAttribute('placeholder','Color code');
         inputBGcolorText.value = inputBGcolor.value;
 
         var submitButton = document.createElement('input');
         submitButton.setAttribute('type', 'submit');
         submitButton.setAttribute('value', 'Add');
+
+        var formGroup = document.createElement('div');
+        formGroup.className = "formGroup";
+        var formGroup1 = document.createElement('div');
+        formGroup1.className = "formGroup";
+        var rightInput = document.createElement('div');
+        rightInput.className = "rightInput";
+        var rightInput1 = document.createElement('div');
+        rightInput1.className = "rightInput";
+        var leftInput = document.createElement('div');
+        leftInput.className = "leftInput";
+        var leftInput1 = document.createElement('div');
+        leftInput1.className = "leftInput";
         
         sectionOption.appendChild(formOptions);
-        formOptions.appendChild(inputWidth);
-        formOptions.appendChild(inputHeight);
-        formOptions.appendChild(inputFontSize);
-        formOptions.appendChild(inputBGcolor);
-        formOptions.appendChild(inputBGcolorText);
+        formOptions.appendChild(formGroup).appendChild(leftInput).appendChild(inputWidth);
+        formGroup.appendChild(rightInput).appendChild(inputHeight);
+        formOptions.appendChild(formGroup1).appendChild(leftInput1).appendChild(inputBGcolorText);
+        leftInput1.appendChild(inputBGcolor);
         formOptions.appendChild(submitButton);
 
-        self.setOptionFormValues(self, formOptions, inputWidth, inputHeight);
+        self.setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText);
         self.changeColor(self, inputBGcolor, inputBGcolorText);
     }
 
-    setOptionFormValues(self, formOptions, inputWidth, inputHeight){
+    setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText){
         formOptions.addEventListener("submit", function(event){
             event.preventDefault();
             var width_s = inputWidth.value;
             var height_s = inputHeight.value;
-            self.drawOptionFormValues(self, width_s, height_s);
+            var bgColor = inputBGcolorText.value;
+            self.drawOptionFormValues(self, width_s, height_s, bgColor);
         });
     }
 
     // draw section on preview panel
-    drawOptionFormValues(self, w, h){
+    drawOptionFormValues(self, w, h, bgColor){
         var ctx = self.context;
+        ctx.font = "12px Roboto";
+        ctx.color = "#ffffff";
         ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
-        ctx.fillStyle = "green";
+        console.log(bgColor);
+        ctx.fillStyle = bgColor;
         ctx.fillRect(20, 10, 260, 20);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText("layer", 25, 20);
     }
 
     // if inputBGcolor change then change inputBGcolorText value 

@@ -141,6 +141,31 @@ li.clear{
 }
 
 .formOptions input{
-    width: 40%;
+    width: 100%;
+}
+
+.leftInput, .rightInput{
+    width:44%;
     margin:10px;
+}
+
+.leftInput{
+    float: left;
+}
+
+.rightInput{
+    float:right;
+}
+
+.bgColorPicker{
+    width:30%!important;
+    float:right;
+    margin-right: -4px;
+    height: 19px;
+    padding: 1px 0;
+}
+
+.bgColorPickerText{
+    width:64%!important;
+    float:left;
 }
