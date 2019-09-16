@@ -21,8 +21,6 @@ class UI{
         this.canvas = document.getElementById("preview");
         this.context = this.canvas.getContext("2d");
         this.image = new Image();
-
-
     }
 
     submitProperties(){
