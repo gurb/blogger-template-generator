@@ -17,7 +17,7 @@ class UI{
         this.line = document.createElement("hr");
         this.temp_msg;
         this.securityCode = randomCharacter(10);
-
+        
         this.canvas = document.getElementById("preview");
         this.context = this.canvas.getContext("2d");
         this.image = new Image();
@@ -266,6 +266,15 @@ class UI{
     closeProperties(){
         this.properties.style.display = 'none';
     }
+
+    generateCode(){
+        const self = this;
+        var codeBox = document.createElement("div");
+        codeBox.className = "codeBox";
+
+        self.demo.appendChild(codeBox);
+        codeBox.innerHTML += firstPattern.toString();
+    }
 }
 
 function sleep(ms){
@@ -280,6 +289,8 @@ function eventListener(){
     const upLayer = document.getElementById("up-layer");
     const downLayer = document.getElementById("down-layer");
     const closeProperties = document.querySelector(".exitButton");
+
+    const createButton = document.getElementById("create-button");
 
     const ui = new UI();
 
@@ -317,6 +328,11 @@ function eventListener(){
         event.preventDefault();
         ui.closeProperties();
     });
+
+    createButton.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.generateCode();
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -330,6 +346,10 @@ function Section(idName, className, max_widgets, show_add_element){
     this.className = className;
     this.max_widgets = max_widgets;
     this.show_add_element = show_add_element; 
+}
+
+function attrs(selectorName, ){
+
 }
 
 function uniqueIDcontrol(idValue){
@@ -363,23 +383,25 @@ function randomCharacter(len){
 
 
 // pieces of template code
+var tabF = "<div class='tab'>";
+var tabE = "</div>";
 var XMLpattern = "";
-var firstPattern = "<!DOCTYPE html><html><head><meta charset='utf-8'/>"
+var firstPattern = "&lt;!DOCTYPE html>&lt;html>&lt;head>&lt;meta charset='utf-8'/>"
 function titlePattern(titleN){
-    return "<title>" + titleN + "</title>";
+    return "&lt;title>" + titleN + "</title>";
 }
-var cssFirstTag = "<b:skin>";
+var cssFirstTag = "&lt;b:skin>";
 function cssPattern(){
     var cssSelectorCode = "." + arguments[0] + "{";
     for(var i=1; i<arguments.length; i++)
         cssSelectorCode +=  arguments[i] + ";";
     return cssSelectorCode + "}";
 }
-var cssEndTag = "</b:skin>";
-var headEndTag = "</head>";
-var bodyFirstTag = "<body>";
+var cssEndTag = "&lt;/b:skin>";
+var headEndTag = "&lt;/head>";
+var bodyFirstTag = "&lt;body>";
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return "<div class='"+ classN +"'><b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/></div>";  
+    return "&lt;div class='"+ classN +"'>&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>&lt;/div>";  
 }
-var bodyEndTag = "</body>";
-var htmlEndTag = "</html>";
+var bodyEndTag = "&lt;/body>";
+var htmlEndTag = "&lt;/html>";
