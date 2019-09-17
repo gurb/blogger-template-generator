@@ -2,7 +2,8 @@ class UI{
     constructor(){
         this.controller = document.querySelector(".controller");
         this.panel = document.querySelector(".panel");
-        this.demo = document.querySelector(".demo");
+        this.demoView = document.querySelector(".demo-view");
+        this.codeBox = document.querySelector(".codeBox");
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
@@ -113,7 +114,7 @@ class UI{
         sectionHeader.addEventListener("click", function(){
             self.showSectionProperties(self, id, iconId);
         });
-        self.demo.appendChild(sectionArea);
+        self.demoView.appendChild(sectionArea);
         sectionArea.appendChild(sectionHeader);
         sectionHeader.appendChild(iconImage);
         iconImage.innerHTML += sections[sections.length - 1].idName;
@@ -221,7 +222,7 @@ class UI{
         sections.splice(this.layersList.selectedIndex, 1);
         var selectedDivName = this.layersList.options[this.layersList.selectedIndex].text + this.securityCode;
         var sectionIDdiv = document.getElementById(selectedDivName);
-        this.demo.removeChild(sectionIDdiv);
+        this.demoView.removeChild(sectionIDdiv);
         this.layersList.remove(this.layersList.selectedIndex);
     }
 
@@ -269,11 +270,15 @@ class UI{
 
     generateCode(){
         const self = this;
-        var codeBox = document.createElement("div");
-        codeBox.className = "codeBox";
+        self.codeBox.innerHTML = firstPattern.toString() + titlePattern("Blog") + cssFirstTag;
+        
+        // css rules coming here
 
-        self.demo.appendChild(codeBox);
-        codeBox.innerHTML += firstPattern.toString();
+        self.codeBox.innerHTML += cssEndTag + headEndTag + bodyFirstTag;
+        for(var i=0;i<sections.length;i++){
+            self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].maxWidgetNumber, sections[i].show_add_element);
+        }
+        self.codeBox.innerHTML += bodyEndTag + htmlEndTag;
     }
 }
 
@@ -388,7 +393,7 @@ var tabE = "</div>";
 var XMLpattern = "";
 var firstPattern = "&lt;!DOCTYPE html>&lt;html>&lt;head>&lt;meta charset='utf-8'/>"
 function titlePattern(titleN){
-    return "&lt;title>" + titleN + "</title>";
+    return "&lt;title>" + titleN + "&lt;/title>";
 }
 var cssFirstTag = "&lt;b:skin>";
 function cssPattern(){
