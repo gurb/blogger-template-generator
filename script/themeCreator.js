@@ -413,19 +413,19 @@ function randomCharacter(len){
 var tabF = "<div class='tab'>";
 var tabE = "</div>";
 var XMLpattern = "";
-var firstPattern = "&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'/&gt;"
+var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
 function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
-var cssFirstTag = "&lt;b:skin&gt;&lt;![CDATA[";
+var cssFirstTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;b:skin&gt;&lt;![CDATA[" + "<br/><br/>&emsp;&emsp;&emsp;&emsp;";
 function cssPattern(selectorN, w, h, bgC){
-    return "." + selectorN + "{width:" + w + ";height:" + h + ";background:" + bgC + ";}"; 
+    return "#" + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
 }
-var cssEndTag = "]]&gt;&lt;/b:skin&gt;";
-var headEndTag = "&lt;/head&gt;";
-var bodyFirstTag = "&lt;body&gt;";
+var cssEndTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
+var headEndTag = "&lt;/head&gt;" + "<br/>&emsp;&emsp;";
+var bodyFirstTag = "&lt;body&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return "&lt;div class='"+ classN +"'>&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>&lt;/div&gt;";  
+    return "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;div class='"+ classN +"'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>"+ "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;/div&gt;";  
 }
-var bodyEndTag = "&lt;/body&gt;";
-var htmlEndTag = "&lt;/html&gt;";
+var bodyEndTag = "<br/>&emsp;&emsp;" + "&lt;/body&gt;";
+var htmlEndTag = "<br/>" + "&lt;/html&gt;";
