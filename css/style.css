@@ -70,6 +70,7 @@ select{
     height:auto;
 }
 .layers-list{
+    font-size: 13px;
     height: 120px;
 }
 ul.layers-control{
@@ -145,6 +146,7 @@ li.clear{
 }
 
 .formOptions input{
+    font-size: 13px;
     width: 100%;
 }
 
@@ -179,8 +181,13 @@ li.clear{
 }
 
 .codeBox{
+    word-wrap: break-word;
     border:1px solid #ccc;
     padding: 10px;
     font-family: 'Source Code Pro', monospace;
     font-size: 13px;
+}
+
+.properties{
+    margin-top:10px;
 }

@@ -9,7 +9,7 @@ class UI{
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
         this.properties = document.querySelector(".properties");
-        this.properties.style.display = 'none';
+        //this.properties.style.display = 'none';
         this.propertiesNotification = document.querySelector(".properties-notification");
         this.sectionId = document.getElementById("sectionId");
         this.sectionClass = document.getElementById("sectionClass");
@@ -188,7 +188,8 @@ class UI{
             var height_s = inputHeight.value;
             var bgColor = inputBGcolorText.value;
             var objCss = new CSSattr(sectionHeader.textContent, width_s, height_s, bgColor);
-            cssStyles.push(objCss); 
+            if(controlCSS(objCss))
+                cssStyles.push(objCss); 
             self.drawOptionFormValues(self, width_s, height_s, bgColor);
         });
     }
@@ -374,6 +375,16 @@ function uniqueIDcontrol(idValue){
     for(var i=0;i<sections.length;i++){
         if(sections[i].idName === idValue)
             return false;
+    }
+    return true;
+}
+
+function controlCSS(objCss){
+    for(var i=0;i<cssStyles.length;i++){
+        if(objCss.selectorName == cssStyles[i].selectorName){
+            cssStyles[i] = objCss;
+            return false;
+        }
     }
     return true;
 }
