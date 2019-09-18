@@ -173,3 +173,10 @@ li.clear{
 .tab{
     margin-left:2em; 
 }
+
+.codeBox{
+    border:1px solid #ccc;
+    padding: 10px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+}

@@ -4,6 +4,7 @@ class UI{
         this.panel = document.querySelector(".panel");
         this.demoView = document.querySelector(".demo-view");
         this.codeBox = document.querySelector(".codeBox");
+        this.codeBox.style.display = 'none';
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
@@ -114,15 +115,16 @@ class UI{
         sectionHeader.addEventListener("click", function(){
             self.showSectionProperties(self, id, iconId);
         });
+        self.codeBox.style.display = 'none';
         self.demoView.appendChild(sectionArea);
         sectionArea.appendChild(sectionHeader);
         sectionHeader.appendChild(iconImage);
         iconImage.innerHTML += sections[sections.length - 1].idName;
         sectionArea.appendChild(sectionOption);
-        this.addOptionFormSection(self, sectionOption);
+        this.addOptionFormSection(self, sectionOption, sectionHeader);
     }
 
-    addOptionFormSection(self, sectionOption){
+    addOptionFormSection(self, sectionOption, sectionHeader){
         var formOptions = document.createElement('form');
         formOptions.setAttribute('class','formOptions');
         formOptions.setAttribute('method','post')
@@ -175,16 +177,18 @@ class UI{
         leftInput1.appendChild(inputBGcolor);
         formOptions.appendChild(submitButton);
 
-        self.setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText);
+        self.setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText, sectionHeader);
         self.changeColor(self, inputBGcolor, inputBGcolorText);
     }
 
-    setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText){
+    setOptionFormValues(self, formOptions, inputWidth, inputHeight, inputBGcolorText, sectionHeader){
         formOptions.addEventListener("submit", function(event){
             event.preventDefault();
             var width_s = inputWidth.value;
             var height_s = inputHeight.value;
             var bgColor = inputBGcolorText.value;
+            var objCss = new CSSattr(sectionHeader.textContent, width_s, height_s, bgColor);
+            cssStyles.push(objCss); 
             self.drawOptionFormValues(self, width_s, height_s, bgColor);
         });
     }
@@ -270,13 +274,16 @@ class UI{
 
     generateCode(){
         const self = this;
+        self.codeBox.style.display = 'block';
         self.codeBox.innerHTML = firstPattern.toString() + titlePattern("Blog") + cssFirstTag;
         
-        // css rules coming here
+        for(var i=0;i<cssStyles.length;i++){
+            self.codeBox.innerHTML += cssPattern(cssStyles[i].selectorName, cssStyles[i].width, cssStyles[i].height, cssStyles[i].bgColor);
+        }
 
         self.codeBox.innerHTML += cssEndTag + headEndTag + bodyFirstTag;
         for(var i=0;i<sections.length;i++){
-            self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].maxWidgetNumber, sections[i].show_add_element);
+            self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].max_widgets, sections[i].show_add_element);
         }
         self.codeBox.innerHTML += bodyEndTag + htmlEndTag;
     }
@@ -345,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 var sections = [];
+var cssStyles = [];
 
 function Section(idName, className, max_widgets, show_add_element){
     this.idName = idName;
@@ -353,8 +361,11 @@ function Section(idName, className, max_widgets, show_add_element){
     this.show_add_element = show_add_element; 
 }
 
-function attrs(selectorName, ){
-
+function CSSattr(selectorName, width, height, bgColor){
+    this.selectorName = selectorName;
+    this.width = width;
+    this.height = height;
+    this.bgColor = bgColor;
 }
 
 function uniqueIDcontrol(idValue){
@@ -391,22 +402,19 @@ function randomCharacter(len){
 var tabF = "<div class='tab'>";
 var tabE = "</div>";
 var XMLpattern = "";
-var firstPattern = "&lt;!DOCTYPE html>&lt;html>&lt;head>&lt;meta charset='utf-8'/>"
+var firstPattern = "&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'/&gt;"
 function titlePattern(titleN){
-    return "&lt;title>" + titleN + "&lt;/title>";
+    return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
-var cssFirstTag = "&lt;b:skin>";
-function cssPattern(){
-    var cssSelectorCode = "." + arguments[0] + "{";
-    for(var i=1; i<arguments.length; i++)
-        cssSelectorCode +=  arguments[i] + ";";
-    return cssSelectorCode + "}";
+var cssFirstTag = "&lt;b:skin&gt;&lt;![CDATA[";
+function cssPattern(selectorN, w, h, bgC){
+    return "." + selectorN + "{width:" + w + ";height:" + h + ";background:" + bgC + ";}"; 
 }
-var cssEndTag = "&lt;/b:skin>";
-var headEndTag = "&lt;/head>";
-var bodyFirstTag = "&lt;body>";
+var cssEndTag = "]]&gt;&lt;/b:skin&gt;";
+var headEndTag = "&lt;/head&gt;";
+var bodyFirstTag = "&lt;body&gt;";
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return "&lt;div class='"+ classN +"'>&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>&lt;/div>";  
+    return "&lt;div class='"+ classN +"'>&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>&lt;/div&gt;";  
 }
-var bodyEndTag = "&lt;/body>";
-var htmlEndTag = "&lt;/html>";
+var bodyEndTag = "&lt;/body&gt;";
+var htmlEndTag = "&lt;/html&gt;";
