@@ -208,15 +208,14 @@ li.clear{
 
 .banner{
     background:#3f3f3f;
-    height:200px;
+    height:150px;
 }
 
 h1.title{
     color:#fff;
-    line-height: 200px;
+    line-height: 100px;
     text-align: center;
 }
-
 
 .container{
     padding-right: 0!important;
@@ -246,7 +245,7 @@ h1.title{
     height:90px;
     margin:5px;
     padding:5px;
-    border:1px solid #ccc;
+    
     border-radius:4px;
 }
 
