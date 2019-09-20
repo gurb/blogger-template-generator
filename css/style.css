@@ -8,13 +8,16 @@ body{
     margin: auto;
 }
 .controller{
-    background: #fff;
+    font-size: 13px;
+    background: #f1f1f1;
     border-bottom:1px solid #ccc;
     padding: 10px;
 }
+.controller .form-control{
+    font-size:13px!important;
+}
 .controller button{
     padding:5px 10px;
-    margin-left:10px;
 }
 .panel{background:#fff;}
 .demo{
@@ -118,7 +121,7 @@ li.clear{
 
 .sectionArea{
     border:1px solid #ccc;
-    background: #eee;
+    background: rgb(192, 192, 192);
     padding: 3px;
     margin-bottom:10px;
     text-align: center;
@@ -142,7 +145,7 @@ li.clear{
     padding: 3px 0 0 40px;
     height:32px;
     display: inline-block;
-    background:url(../images/open-arrow.png) no-repeat;
+    background:url(https://gurb.github.io/open-arrow.png) no-repeat;
     text-align:center;
     opacity: 0.5;
 }
