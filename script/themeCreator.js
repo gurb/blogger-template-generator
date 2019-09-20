@@ -5,6 +5,8 @@ class UI{
         this.demoView = document.querySelector(".demo-view");
         this.codeBox = document.querySelector(".codeBox");
         this.codeBox.style.display = 'none';
+        this.copyCodeButton = document.querySelector(".copyCode");
+        this.copyCodeButton.style.display = 'none';
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
@@ -57,6 +59,24 @@ class UI{
         this.properties.style.display = 'block';
     }
 
+    copyCode(){
+        if(document.selection){
+            var range = document.body.createTextRange();
+            var codeBox = document.getElementById("codeB");
+            range.moveToElementText(codeBox);
+            range.select();
+            document.execCommand("copy");
+        }else if(window.getSelection){
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            var range = document.createRange();
+            range.selectNode(document.getElementById("codeB"));
+            sel.addRange(range);
+            document.execCommand("copy");
+            sel.removeAllRanges(); // deactive selection :)
+        }
+    }
+
     addNotification(self, message){
         var notification = document.createElement('div');
         notification.className = "showNotification";
@@ -76,7 +96,7 @@ class UI{
         var iconState = document.getElementById(iconId);
         if(sectionOption.style.display === 'block'){
             sectionOption.style.display = 'none';
-            iconState.style.backgroundImage = 'url(images/open-arrow.png)';
+            iconState.style.backgroundImage = 'url(https://gurb.github.io/open-arrow.png)';
             iconState.style.opacity = 0.5;
         }else{
             for(var i=0;i<sections.length;i++){
@@ -84,11 +104,11 @@ class UI{
                 var tempIconId = sections[i].idName + this.securityCode + "-icon"; 
                 if(id != tempId){
                     document.getElementById(tempId).style.display = 'none';
-                    document.getElementById(tempIconId).style.backgroundImage = 'url(images/open-arrow.png)';
+                    document.getElementById(tempIconId).style.backgroundImage = 'url(https://gurb.github.io/open-arrow.png)';
                     document.getElementById(tempIconId).style.opacity = 0.5;
                     continue;
                 }
-                iconState.style.backgroundImage = 'url(images/close-arrow.png)';
+                iconState.style.backgroundImage = 'url(https://gurb.github.io/close-arrow.png)';
                 iconState.style.opacity = 1;
                 sectionOption.style.display = 'block';
                 index = i;
@@ -116,6 +136,7 @@ class UI{
             self.showSectionProperties(self, id, iconId);
         });
         self.codeBox.style.display = 'none';
+        self.copyCodeButton.style.display = 'none';
         self.demoView.appendChild(sectionArea);
         sectionArea.appendChild(sectionHeader);
         sectionHeader.appendChild(iconImage);
@@ -155,7 +176,7 @@ class UI{
 
         var submitButton = document.createElement('input');
         submitButton.setAttribute('type', 'submit');
-        submitButton.setAttribute('value', 'Add');
+        submitButton.setAttribute('value', 'Add Style');
 
         var formGroup = document.createElement('div');
         formGroup.className = "formGroup";
@@ -276,6 +297,7 @@ class UI{
     generateCode(){
         const self = this;
         self.codeBox.style.display = 'block';
+        self.copyCodeButton.style.display = 'block';
         self.codeBox.innerHTML = firstPattern.toString() + titlePattern("Blog") + cssFirstTag;
         
         for(var i=0;i<cssStyles.length;i++){
@@ -302,6 +324,7 @@ function eventListener(){
     const upLayer = document.getElementById("up-layer");
     const downLayer = document.getElementById("down-layer");
     const closeProperties = document.querySelector(".exitButton");
+    const copyButton = document.querySelector(".copyCode");
 
     const createButton = document.getElementById("create-button");
 
@@ -345,6 +368,11 @@ function eventListener(){
     createButton.addEventListener("click", function(event){
         event.preventDefault();
         ui.generateCode();
+    });
+
+    copyButton.addEventListener("click", function(event){
+        event.preventDefault();
+        ui.copyCode();
     });
 }
 
@@ -419,13 +447,13 @@ function titlePattern(titleN){
 }
 var cssFirstTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;b:skin&gt;&lt;![CDATA[" + "<br/><br/>&emsp;&emsp;&emsp;&emsp;";
 function cssPattern(selectorN, w, h, bgC){
-    return "#" + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
+    return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
 }
 var cssEndTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
 var headEndTag = "&lt;/head&gt;" + "<br/>&emsp;&emsp;";
 var bodyFirstTag = "&lt;body&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;div class='"+ classN +"'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>"+ "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;/div&gt;";  
+    return "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>"+ "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;/div&gt;";  
 }
 var bodyEndTag = "<br/>&emsp;&emsp;" + "&lt;/body&gt;";
 var htmlEndTag = "<br/>" + "&lt;/html&gt;";
