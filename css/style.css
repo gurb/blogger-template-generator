@@ -1,6 +1,6 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background: #cbddca!important;
+    background: #dddddd!important;
     overflow-y: scroll;
 }
 .container{
@@ -8,7 +8,8 @@ body{
     margin: auto;
 }
 .controller{
-    background: #000000;
+    background: #fff;
+    border-bottom:1px solid #ccc;
     padding: 10px;
 }
 .controller button{
@@ -204,3 +205,48 @@ li.clear{
     border-radius: 4px;
     border:1px solid #ccc;
 }
+
+.banner{
+    background:#3f3f3f;
+    height:200px;
+}
+
+h1.title{
+    color:#fff;
+    line-height: 200px;
+    text-align: center;
+}
+
+
+.container{
+    padding-right: 0!important;
+    padding-left: 0!important;
+}
+.notification-panel{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background:#fff;
+    height:100px;
+    border-bottom:1px solid #ccc;
+    margin-top:-30px;
+}
+
+.manipulate-row{
+    margin-left:0!important;
+    margin-right:0!important;
+}
+
+.manipulate-row .col-sm-4{
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+}
+
+.box-notf{
+    font-size:12px;
+    height:90px;
+    margin:5px;
+    padding:5px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
