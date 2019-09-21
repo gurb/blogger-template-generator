@@ -7,6 +7,11 @@ class UI{
         this.codeBox.style.display = 'none';
         this.copyCodeButton = document.querySelector(".copyCode");
         this.copyCodeButton.style.display = 'none';
+
+        this.templateName = document.getElementById("templateName");
+        this.templateURL = document.getElementById("templateURL");
+        this.author = document.getElementById("author");
+
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
@@ -295,10 +300,15 @@ class UI{
     }
 
     generateCode(){
+        const templateName = this.templateName.value + newLine + tab;
+        const templateURL = this.templateURL.value + newLine + tab;
+        const author = this.author.value;
+
         const self = this;
         self.codeBox.style.display = 'block';
         self.copyCodeButton.style.display = 'block';
         self.codeBox.innerHTML = firstPattern.toString() + titlePattern("Blog") + cssFirstTag;
+        self.codeBox.innerHTML += commentFirst + templateName + templateURL + author + commentLast;
         
         for(var i=0;i<cssStyles.length;i++){
             self.codeBox.innerHTML += cssPattern(cssStyles[i].selectorName, cssStyles[i].width, cssStyles[i].height, cssStyles[i].bgColor);
@@ -436,16 +446,17 @@ function randomCharacter(len){
     return randomCharacter;
 }
 
-
 // pieces of template code
-var tabF = "<div class='tab'>";
-var tabE = "</div>";
+var newLine = "<br/>"
+var tab = "&emsp;&emsp;&emsp;&emsp;";
 var XMLpattern = "";
 var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
 function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
 var cssFirstTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;b:skin&gt;&lt;![CDATA[" + "<br/><br/>&emsp;&emsp;&emsp;&emsp;";
+var commentFirst = "*/ ---------------------------------" + "<br/>&emsp;&emsp;&emsp;&emsp;";
+var commentLast = "<br/>&emsp;&emsp;&emsp;&emsp;" + "--------------------------------- */";
 function cssPattern(selectorN, w, h, bgC){
     return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
 }
