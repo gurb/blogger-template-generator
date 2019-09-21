@@ -469,23 +469,23 @@ function randomCharacter(len){
 
 // pieces of template code
 var newLine = "<br/>"
-var tab = "&emsp;&emsp;&emsp;&emsp;";
+var tab = "&emsp;&emsp;&emsp;&emsp;"; 
 var XMLpattern = "";
-var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
+var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + newLine + tab;
 function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
-var cssFirstTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;b:skin&gt;&lt;![CDATA[" + "<br/><br/>&emsp;&emsp;&emsp;&emsp;";
-var commentFirst = "*/ ---------------------------------" + "<br/>&emsp;&emsp;&emsp;&emsp;";
-var commentLast = "<br/>&emsp;&emsp;&emsp;&emsp;" + "--------------------------------- */" + newLine + tab;
+var cssFirstTag = newLine + tab + "&lt;b:skin&gt;&lt;![CDATA[" + newLine + newLine + tab;
+var commentFirst = "*/ ---------------------------------" + newLine + tab;
+var commentLast = newLine + tab + "--------------------------------- */" + newLine + tab;
 function cssPattern(selectorN, w, h, bgC){
-    return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
+    return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + newLine + tab;
 }
-var cssEndTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
+var cssEndTag = newLine + tab + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
 var headEndTag = "&lt;/head&gt;" + "<br/>&emsp;&emsp;";
-var bodyFirstTag = "&lt;body&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;";
+var bodyFirstTag = "&lt;body&gt;" + newLine + tab;
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>"+ "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;/div&gt;";  
+    return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
 }
 var bodyEndTag = "<br/>&emsp;&emsp;" + "&lt;/body&gt;";
 var htmlEndTag = "<br/>" + "&lt;/html&gt;";
