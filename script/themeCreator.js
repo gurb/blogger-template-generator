@@ -301,9 +301,9 @@ class UI{
     }
 
     generateCode(){
-        const templateName = this.templateName.value;
-        const templateURL = this.templateURL.value;
-        const author = this.author.value;
+        const templateName = "Template Name: " + this.templateName.value + newLine + tab;
+        const templateURL = "Template URL: " + this.templateURL.value + newLine + tab;
+        const author = "Author: " + this.author.value;
 
         const self = this;
         self.codeBox.style.display = 'block';
@@ -477,7 +477,7 @@ function titlePattern(titleN){
 }
 var cssFirstTag = "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;b:skin&gt;&lt;![CDATA[" + "<br/><br/>&emsp;&emsp;&emsp;&emsp;";
 var commentFirst = "*/ ---------------------------------" + "<br/>&emsp;&emsp;&emsp;&emsp;";
-var commentLast = "<br/>&emsp;&emsp;&emsp;&emsp;" + "--------------------------------- */";
+var commentLast = "<br/>&emsp;&emsp;&emsp;&emsp;" + "--------------------------------- */" + newLine + tab;
 function cssPattern(selectorN, w, h, bgC){
     return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + "<br/>&emsp;&emsp;&emsp;&emsp;"; 
 }
