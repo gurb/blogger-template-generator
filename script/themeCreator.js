@@ -11,6 +11,7 @@ class UI{
         this.templateName = document.getElementById("templateName");
         this.templateURL = document.getElementById("templateURL");
         this.author = document.getElementById("author");
+        this.settingsNotification = document.querySelector(".settings-notification");
 
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
@@ -57,7 +58,7 @@ class UI{
             this.addSection(self, sections);
             this.addOption(self, sections);
         }
-        this.addNotification(self, message);
+        this.addNotification(self, message, self.propertiesNotification);
     }
 
     showAddProperties(){
@@ -82,11 +83,11 @@ class UI{
         }
     }
 
-    addNotification(self, message){
+    addNotification(self, message, showDiv){
         var notification = document.createElement('div');
         notification.className = "showNotification";
-        if(self.propertiesNotification.children.length === 0 || this.temp_msg !== message)
-            self.propertiesNotification.appendChild(notification);
+        if(showDiv.children.length === 0 || this.temp_msg !== message)
+            showDiv.appendChild(notification);
         notification.innerHTML = message;
         this.temp_msg = message;
         setTimeout(function(){
@@ -300,8 +301,8 @@ class UI{
     }
 
     generateCode(){
-        const templateName = this.templateName.value + newLine + tab;
-        const templateURL = this.templateURL.value + newLine + tab;
+        const templateName = this.templateName.value;
+        const templateURL = this.templateURL.value;
         const author = this.author.value;
 
         const self = this;
@@ -319,6 +320,25 @@ class UI{
             self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].max_widgets, sections[i].show_add_element);
         }
         self.codeBox.innerHTML += bodyEndTag + htmlEndTag;
+    }
+
+    controlTemplateSettings(){
+        const templateName = this.templateName.value;
+        const templateURL = this.templateURL.value;
+        const author = this.author.value;
+        var message;
+
+        if(templateName === ""){
+            message = "Give a name for template";
+        }else if(templateURL === ""){
+            message = "Give a template URL";
+        }else if(author == ""){
+            message = "Specify template developer's name";
+        }else{
+            message = "Created Successfully Template Code";
+            this.generateCode();
+        }
+        this.addNotification(self, message, this.settingsNotification);
     }
 }
 
@@ -377,7 +397,7 @@ function eventListener(){
 
     createButton.addEventListener("click", function(event){
         event.preventDefault();
-        ui.generateCode();
+        ui.controlTemplateSettings();
     });
 
     copyButton.addEventListener("click", function(event){
@@ -416,6 +436,7 @@ function uniqueIDcontrol(idValue){
     }
     return true;
 }
+
 
 function controlCSS(objCss){
     for(var i=0;i<cssStyles.length;i++){
