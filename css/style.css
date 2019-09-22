@@ -20,10 +20,16 @@ body{
     padding:5px 10px;
 }
 .panel{background:#fff;}
+
 .demo{
+    background:#fff;
+    background:url("../images/bg1.png") no-repeat;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-blend-mode: lighten;
+    background-position: center;
+    
     width:470px;
     float:left;
-    background:#fff;
     padding: 10px;
 }
 .rightside{
@@ -219,6 +225,12 @@ h1.title{
     text-align: center;
 }
 
+.descriptionwrapper{
+    text-align:center;
+    margin-top:-30px;
+    color:#ccc;
+}
+
 .container{
     padding-right: 0!important;
     padding-left: 0!important;
@@ -250,4 +262,6 @@ h1.title{
     
     border-radius:4px;
 }
+
+
 
