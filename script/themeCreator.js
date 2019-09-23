@@ -13,6 +13,8 @@ class UI{
         this.author = document.getElementById("author");
         this.settingsNotification = document.querySelector(".settings-notification");
 
+        this.blogWidth = document.getElementById("BlogWidth");
+
         this.rightside = document.querySelector(".rightside");
         this.layersList = document.querySelector(".layers-list");
         this.layersControl = document.querySelector(".layers-control");
@@ -311,12 +313,16 @@ class UI{
         const templateURL = "Template URL: " + this.templateURL.value + newLine + tab;
         const author = "Author: " + this.author.value;
 
+        const blogWidth = this.blogWidth.value;
+
         const self = this;
         self.codeBox.style.display = 'block';
         self.copyCodeButton.style.display = 'block';
         self.codeBox.innerHTML = firstPattern.toString() + titlePattern("Blog") + cssFirstTag;
         self.codeBox.innerHTML += commentFirst + templateName + templateURL + author + commentLast;
         
+        self.codeBox.innerHTML += blogPattern(blogWidth);
+
         for(var i=0;i<cssStyles.length;i++){
             self.codeBox.innerHTML += cssPattern(cssStyles[i].selectorName, cssStyles[i].width, cssStyles[i].height, cssStyles[i].bgColor);
         }
@@ -475,9 +481,9 @@ function randomCharacter(len){
 
 // pieces of template code
 var newLine = "<br/>"
-var tab = "&emsp;&emsp;&emsp;&emsp;"; 
+var tab = ""; 
 var XMLpattern = "";
-var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + newLine + tab;
+var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>" + "&lt;head&gt;" + "<br/>" + "&lt;meta charset='utf-8'/&gt;" + newLine + tab;
 
 function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
@@ -485,19 +491,22 @@ function titlePattern(titleN){
 var cssFirstTag = newLine + tab + "&lt;b:skin&gt;&lt;![CDATA[" + newLine + newLine + tab;
 var commentFirst = "*/ ---------------------------------" + newLine + tab;
 var commentLast = newLine + tab + "--------------------------------- */" + newLine + tab;
+function blogPattern(w){
+    return ".container{width: " + w + "};" + newLine + tab; 
+}
 function cssPattern(selectorN, w, h, bgC){
     return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + newLine + tab;
 }
-var cssEndTag = newLine + tab + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
-var headEndTag = "&lt;/head&gt;" + "<br/>&emsp;&emsp;";
-var bodyFirstTag = "&lt;body&gt;" + newLine + tab;
+var cssEndTag = newLine + tab + "]]&gt;&lt;/b:skin&gt;" + "<br/>";
+var headEndTag = "&lt;/head&gt;" + "<br/>";
+var bodyFirstTag = "&lt;body&gt;" + newLine + tab + "&lt;div class='container'>" + newLine + tab;
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN, widgetCode){
     if(widgetCode === "0" && widgetCode !== "1")
-        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
+        return tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
     else if(widgetCode === "1")
-        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'>" + newLine + tab + tab + main_widget + newLine + tab + "&emsp;&emsp;&lt;/b:section&gt;" + newLine + tab + "&lt;/div&gt;";  
+        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'>" + newLine + tab + tab + main_widget + newLine + tab + "&lt;/b:section&gt;" + newLine + tab + "&lt;/div&gt;";  
 }
-var bodyEndTag = "<br/>&emsp;&emsp;" + "&lt;/body&gt;";
+var bodyEndTag = "&lt;/div><br/>" + "&lt;/body&gt;";
 var htmlEndTag = "<br/>" + "&lt;/html&gt;";
 
 // widget codes

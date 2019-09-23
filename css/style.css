@@ -19,7 +19,12 @@ body{
 .controller button{
     padding:5px 10px;
 }
-.panel{background:#fff;}
+.panel{
+    background:#fff;
+    margin-bottom:40px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
 
 .demo{
     background:#fff;
@@ -28,14 +33,13 @@ body{
     background-blend-mode: lighten;
     background-position: center;
     
-    width:470px;
-    float:left;
+    max-width:470px;
+    
     padding: 10px;
 }
 .rightside{
     text-align: center;
-    width:290px;
-    float:right;
+    max-width:290px;
     padding:10px;
     background:#f1f1f1;
 }
@@ -48,9 +52,10 @@ body{
     width: 100%;
     padding:5px;
 }
-select#select_box {
+select#select_box, select#select_widget_type {
     font-size: 13px;
 }
+
 select{
     font-size:13px;
     width:100%;
@@ -178,7 +183,6 @@ li.clear{
     width:30%!important;
     float:right;
     margin-right: -4px;
-    height: 19px;
     padding: 0;
 }
 
@@ -263,6 +267,3 @@ h1.title{
     
     border-radius:4px;
 }
-
-
-
