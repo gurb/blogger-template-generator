@@ -23,6 +23,7 @@ class UI{
         this.sectionClass = document.getElementById("sectionClass");
         this.maxWidgetNumber = document.getElementById("maxWidgetNumber");
         this.selectBox = document.getElementById("select_box");
+        this.selectWidgetType = document.getElementById("select_widget_type");
         this.sectionOption = document.querySelector(".sectionOption");
         this.line = document.createElement("hr");
         this.temp_msg;
@@ -38,6 +39,7 @@ class UI{
         const classValue = this.sectionClass.value;
         const maxWidgetNumberValue = this.maxWidgetNumber.value;
         const selectBoxValue = this.selectBox.options[this.selectBox.selectedIndex].value;
+        const selectWidgetTypeValue = this.selectWidgetType.options[this.selectWidgetType.selectedIndex].value;
         const self = this;
         var message;
 
@@ -53,7 +55,7 @@ class UI{
             message = "ID must be unique";
         }else{
             message = "All added.";
-            var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue);
+            var obj = new Section(idValue, classValue, maxWidgetNumberValue, selectBoxValue, selectWidgetTypeValue);
             sections.push(obj);
             this.addSection(self, sections);
             this.addOption(self, sections);
@@ -321,7 +323,7 @@ class UI{
 
         self.codeBox.innerHTML += cssEndTag + headEndTag + bodyFirstTag;
         for(var i=0;i<sections.length;i++){
-            self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].max_widgets, sections[i].show_add_element);
+            self.codeBox.innerHTML += sectionPattern(sections[i].idName, sections[i].className, sections[i].max_widgets, sections[i].show_add_element, sections[i].widgetType);
         }
         self.codeBox.innerHTML += bodyEndTag + htmlEndTag;
     }
@@ -417,11 +419,12 @@ document.addEventListener('DOMContentLoaded', function(){
 var sections = [];
 var cssStyles = [];
 
-function Section(idName, className, max_widgets, show_add_element){
+function Section(idName, className, max_widgets, show_add_element, widgetType){
     this.idName = idName;
     this.className = className;
     this.max_widgets = max_widgets;
-    this.show_add_element = show_add_element; 
+    this.show_add_element = show_add_element;
+    this.widgetType = widgetType; 
 }
 
 function CSSattr(selectorName, width, height, bgColor){
@@ -475,6 +478,7 @@ var newLine = "<br/>"
 var tab = "&emsp;&emsp;&emsp;&emsp;"; 
 var XMLpattern = "";
 var firstPattern = "&lt;!DOCTYPE html&gt;" + "<br/>" + "&lt;html&gt;" + "<br/>&emsp;&emsp;" + "&lt;head&gt;" + "<br/>&emsp;&emsp;&emsp;&emsp;" + "&lt;meta charset='utf-8'/&gt;" + newLine + tab;
+
 function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
@@ -487,8 +491,14 @@ function cssPattern(selectorN, w, h, bgC){
 var cssEndTag = newLine + tab + "]]&gt;&lt;/b:skin&gt;" + "<br/>&emsp;&emsp;";
 var headEndTag = "&lt;/head&gt;" + "<br/>&emsp;&emsp;";
 var bodyFirstTag = "&lt;body&gt;" + newLine + tab;
-function sectionPattern(idN, classN, maxWidgetN, showaddelementN){
-    return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
+function sectionPattern(idN, classN, maxWidgetN, showaddelementN, widgetCode){
+    if(widgetCode === "0" && widgetCode !== "1")
+        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
+    else if(widgetCode === "1")
+        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'>" + newLine + tab + tab + main_widget + newLine + tab + "&emsp;&emsp;&lt;/b:section&gt;" + newLine + tab + "&lt;/div&gt;";  
 }
 var bodyEndTag = "<br/>&emsp;&emsp;" + "&lt;/body&gt;";
 var htmlEndTag = "<br/>" + "&lt;/html&gt;";
+
+// widget codes
+var main_widget = "&lt;b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'/&gt;"
