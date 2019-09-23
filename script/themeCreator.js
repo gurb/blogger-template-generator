@@ -158,10 +158,12 @@ class UI{
         
         var inputWidth = document.createElement('input');
         inputWidth.setAttribute('type','text');
+        inputWidth.setAttribute('class','form-control');
         inputWidth.setAttribute('placeholder','Width');
 
         var inputHeight = document.createElement('input');
         inputHeight.setAttribute('type','text');
+        inputHeight.setAttribute('class','form-control');
         inputHeight.setAttribute('placeholder','Height');
 
         var inputFontSize = document.createElement('input');
@@ -170,24 +172,26 @@ class UI{
 
         var inputBGcolor = document.createElement('input');
         inputBGcolor.setAttribute('type','color');
-        inputBGcolor.setAttribute('class','bgColorPicker');
+        inputBGcolor.setAttribute('class','bgColorPicker form-control');
         inputBGcolor.setAttribute('name','Color Picker');
         inputBGcolor.setAttribute('placeholder','Background Color');
+        inputBGcolor.setAttribute('style', 'padding:0;')
 
         var inputBGcolorText = document.createElement('input');
         inputBGcolorText.setAttribute('type','text');
-        inputBGcolorText.setAttribute('class','bgColorPickerText');
+        inputBGcolorText.setAttribute('class','bgColorPickerText form-control');
         inputBGcolorText.setAttribute('placeholder','Color code');
         inputBGcolorText.value = inputBGcolor.value;
 
         var submitButton = document.createElement('input');
         submitButton.setAttribute('type', 'submit');
         submitButton.setAttribute('value', 'Add Style');
+        submitButton.setAttribute('class', 'btn btn-success');
 
         var formGroup = document.createElement('div');
-        formGroup.className = "formGroup";
+        formGroup.className = "form-group";
         var formGroup1 = document.createElement('div');
-        formGroup1.className = "formGroup";
+        formGroup1.className = "form-group";
         var rightInput = document.createElement('div');
         rightInput.className = "rightInput";
         var rightInput1 = document.createElement('div');
@@ -436,7 +440,6 @@ function uniqueIDcontrol(idValue){
     }
     return true;
 }
-
 
 function controlCSS(objCss){
     for(var i=0;i<cssStyles.length;i++){

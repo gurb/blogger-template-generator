@@ -23,8 +23,8 @@ body{
 
 .demo{
     background:#fff;
-    background:url("../images/bg1.png") no-repeat;
-    background-color: rgba(255, 255, 255, 0.8);
+    background:url("https://gurb.github.io/bg1.png") no-repeat;
+    background-color: rgba(255, 255, 255, 0.9);
     background-blend-mode: lighten;
     background-position: center;
     
@@ -79,8 +79,8 @@ select{
     height:auto;
 }
 .layers-list{
-    font-size: 13px;
-    height: 120px;
+    font-size: 13px!important;
+    height: 120px!important;
 }
 ul.layers-control{
     margin: 0;
@@ -125,8 +125,9 @@ li.clear{
 }
 
 .sectionArea{
-    border:1px solid #ccc;
-    background: rgb(192, 192, 192);
+    border-radius: 4px;
+    border:1px solid #bbb;
+    background:#eee;
     padding: 3px;
     margin-bottom:10px;
     text-align: center;
@@ -178,7 +179,7 @@ li.clear{
     float:right;
     margin-right: -4px;
     height: 19px;
-    padding: 1px 0;
+    padding: 0;
 }
 
 .bgColorPickerText{
