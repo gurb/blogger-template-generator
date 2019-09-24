@@ -49,9 +49,9 @@ class UI{
             message = "Actually, section id is necessary.";
         }else if(classValue==='' || classValue < 0){
             message = "Actually, section class is necessary.";
-        }else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
+        }/*else if(maxWidgetNumberValue==='' || maxWidgetNumberValue < 0){
             message = "Don't Necessary";
-        }else if(selectBoxValue==="0"){
+        }*/else if(selectBoxValue==="0"){
             message = "Yes or No, choose one.";
         }else if(!uniqueIDcontrol(idValue)){
             message = "ID must be unique";
@@ -346,6 +346,8 @@ class UI{
             message = "Give a template URL";
         }else if(author == ""){
             message = "Specify template developer's name";
+        }else if(sections.length === 0){
+            message = "You must add a section";
         }else{
             message = "Created Successfully Template Code";
             this.generateCode();
@@ -489,10 +491,10 @@ function titlePattern(titleN){
     return "&lt;title&gt;" + titleN + "&lt;/title&gt;";
 }
 var cssFirstTag = newLine + tab + "&lt;b:skin&gt;&lt;![CDATA[" + newLine + newLine + tab;
-var commentFirst = "*/ ---------------------------------" + newLine + tab;
+var commentFirst = "/* ---------------------------------" + newLine + tab;
 var commentLast = newLine + tab + "--------------------------------- */" + newLine + tab;
 function blogPattern(w){
-    return ".container{width: " + w + "};" + newLine + tab; 
+    return ".container{width: " + w + ";}" + newLine + tab; 
 }
 function cssPattern(selectorN, w, h, bgC){
     return "." + selectorN + "-area{width:" + w + ";height:" + h + ";background:" + bgC + ";}" + newLine + tab;
@@ -501,10 +503,10 @@ var cssEndTag = newLine + tab + "]]&gt;&lt;/b:skin&gt;" + "<br/>";
 var headEndTag = "&lt;/head&gt;" + "<br/>";
 var bodyFirstTag = "&lt;body&gt;" + newLine + tab + "&lt;div class='container'>" + newLine + tab;
 function sectionPattern(idN, classN, maxWidgetN, showaddelementN, widgetCode){
-    if(widgetCode === "0" && widgetCode !== "1")
-        return tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
+    if(widgetCode === "0" || widgetCode !== "1")
+        return tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' showaddelement='" + showaddelementN + "'/>" + newLine + tab + "&lt;/div&gt;";  
     else if(widgetCode === "1")
-        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' maxwidgets='" + maxWidgetN + "' showaddelement='" + showaddelementN + "'>" + newLine + tab + tab + main_widget + newLine + tab + "&lt;/b:section&gt;" + newLine + tab + "&lt;/div&gt;";  
+        return newLine + tab + "&lt;div class='"+ classN +"-area'>" + "<br/>" + "&lt;b:section id='" + idN + "' class='" + classN + "' showaddelement='" + showaddelementN + "'>" + newLine + tab + tab + main_widget + newLine + tab + "&lt;/b:section&gt;" + newLine + tab + "&lt;/div&gt;";  
 }
 var bodyEndTag = "&lt;/div><br/>" + "&lt;/body&gt;";
 var htmlEndTag = "<br/>" + "&lt;/html&gt;";
